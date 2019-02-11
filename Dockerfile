@@ -1,26 +1,39 @@
-FROM node:10.13
+FROM cypress/base:10
 
-RUN apt-get update && \
-  apt-get install -y \
-    libgtk2.0-0 \
-    libnotify-dev \
-    libgconf-2-4 \
-    libnss3 \
-    libxss1 \
-    libasound2 \
-    xvfb
+USER root
 
-# versions of local tools
+RUN node --version
+RUN echo "force new chrome here"
+
+
+RUN \
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+  echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
+  apt-get update && \
+  apt-get install -y dbus-x11 google-chrome-stable && \
+  rm -rf /var/lib/apt/lists/*
+
+ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
+
+RUN apt-get update && apt-get install -y zip
+
 RUN node -v
-# NPM version should already be pretty new (> 6.4.0)
 RUN npm -v
 RUN yarn -v
+RUN google-chrome --version
+RUN zip --version
+RUN git --version
 
-FROM cypress/browsers:chrome69
+ENV TERM xterm
+
+ENV npm_config_loglevel warn
+
+ENV npm_config_unsafe_perm true
+
 COPY cypress.json package.json ./
 RUN npm install --save-dev cypress
 RUN node_modules/.bin/cypress verify
 RUN node_modules/.bin/cypress --version
-RUN $(npm bin)/cypress run
+
 COPY cypress ./cypress
-CMD npm run cy:run --browser chrome
+CMD npm run cy:run 
