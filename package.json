@@ -3,6 +3,6 @@
     "cypress": "^3.1.5"
   },
   "scripts": {
-	"cy:run": "cypress open --detached"
+	"cy:run": "cypress run"
   }
 }

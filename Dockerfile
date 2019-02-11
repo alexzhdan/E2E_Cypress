@@ -36,4 +36,4 @@ RUN node_modules/.bin/cypress verify
 RUN node_modules/.bin/cypress --version
 
 COPY cypress ./cypress
-CMD npm run cy:run 
+CMD npm run cy:run --browser chrome
