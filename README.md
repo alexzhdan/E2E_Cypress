@@ -18,6 +18,6 @@ Using Docker for test:
 
 2) in cmd open repository with project
 
-3) run command: 'docker build -t <name of your immage> .'
+3) run command: 'docker build -t "name of your immage" .'
 
-4) run command: 'docker run -it --name <name of container> <name of image>
+4) run command: 'docker run -it --name "name of container" "name of image"'
