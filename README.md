@@ -8,7 +8,7 @@ Run test on local machine:
 
 4) In repository open file : 'cypress.json'. Check that baseUrl correspond to url of your application. If not, changed it and save
 
-5) in cmd run command : 'npm run cy:run'
+5) in cmd run command : 'npm run cy:open'
 
 
 
