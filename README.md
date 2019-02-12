@@ -4,7 +4,7 @@ Run test on local machine:
 
 2) In cmd open repository with project 
 
-3) run command: 'npm install cypress --save dev'  
+3) run command: 'npm install cypress --save -dev'  
 
 4) In repository open file : 'cypress.json'. Check that baseUrl correspond to url of your application. If not, changed it and save
 
@@ -18,6 +18,6 @@ Using Docker for test:
 
 2) in cmd open repository with project
 
-3) run command: 'docker build - <name of your immage> .'
+3) run command: 'docker build -t <name of your immage> .'
 
 4) run command: 'docker run -it --name <name of container> <name of image>
